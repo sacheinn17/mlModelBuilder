@@ -1,16 +1,18 @@
-<script lang = "ts">
+<script>
   import { createEventDispatcher } from 'svelte';
-  import { Partial } from 'svelte/types/runtime';
-  import { LayerConfig } from '../types/network';
+
 
   export let layer;
-  export let index;
+  /**
+	 * @type {any}
+	 */
+   export let index;
   
   const dispatch = createEventDispatcher();
   
   const activations = ['relu', 'sigmoid', 'tanh', 'linear'];
   
-  function updateLayer(changes: Partial<LayerConfig>) {
+  function updateLayer(changes) {
     dispatch('update', { index, changes });
   }
 </script>

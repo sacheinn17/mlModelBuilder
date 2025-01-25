@@ -11,20 +11,11 @@
   import { datasets } from '$lib/data/datasets';
 
   let selectedDataset = datasets[0];
-  /**
-	 * @type {string | any[]}
-	 */
-  let metrics = [];
-  /**
-	 * @type {null}
-	 */
-  let predictions = null;
-  // @ts-ignore
-  let labels = null;
-  // @ts-ignore
+  let metrics= [];   
+  let predictions= null;
+  let labels= null;
   let datasetPoints = null;
 
-  // @ts-ignore
   function handleRemoveLayer(event) {
     const { index } = event.detail;
     network.removeLayer(index);
