@@ -1,13 +1,13 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/logo.png';
 	import github from '$lib/images/github.svg';
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+		<a href="https://github.com/sacheinn17/mlModelBuilder">
+			<img src={logo} alt="mlModelBuilder" />
 		</a>
 	</div>
 
@@ -29,7 +29,7 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
+		<a href="https://github.com/sacheinn17/mlModelBuilder/tree/master">
 			<img src={github} alt="GitHub" />
 		</a>
 	</div>

@@ -11,7 +11,7 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>Source code on <a href="https://github.com/sacheinn17/mlModelBuilder/tree/master">github</a>. Consider leaving a star :)</p>
 	</footer>
 </div>
 

@@ -4,18 +4,16 @@
 </svelte:head>
 
 <div class="text-column">
-	<h1>About this app</h1>
+	<h1>About this website</h1>
 
 	<p>
-		This is a <a href="https://kit.svelte.dev">SvelteKit</a> app. You can make your own by typing the
-		following into your command line and following the prompts:
+		This project aims to provide the users a means to create neural networks visully to learn and understand them. Tensorflow js is used to run the 
+		neural network on the users hardware to perform the computation. Also, the appropriate metrics to visualize them is also added.
 	</p>
 
-	<pre>npm create svelte@latest</pre>
+	<pre>Ml Model Builder</pre>
 
 	<p>
-		The page you're looking at is purely static HTML, with no client-side interactivity needed.
-		Because of that, we don't need to load any JavaScript. Try viewing the page's source, or opening
-		the devtools network panel and reloading.
+		Consider starring this project on github to support this project
 	</p>
 </div>
