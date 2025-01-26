@@ -9,6 +9,7 @@
   import { network, isTraining, loss } from '$lib/stores/networkStore';
   import { trainModel } from '$lib/neural/model';
   import { datasets } from '$lib/data/datasets';
+  import LoadData from '$lib/visualization/LoadData.svelte';
 
   let selectedDataset = datasets[0];
   let metrics= [];   
@@ -71,6 +72,8 @@
         <option value={dataset}>{dataset.name}</option>
       {/each}
     </select>
+
+    <LoadData />
     
     <button on:click={() => network.addLayer()} disabled={$isTraining}>
       Add Hidden Layer
