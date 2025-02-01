@@ -15,7 +15,6 @@
   import { trainModel } from '$lib/neural/model';
   import { datasets } from '$lib/data/datasets';
   import LoadData from '$lib/visualization/LoadData.svelte';
-  import LoadDataset from '$lib/visualization/LoadDataset.svelte';
 
   let selectedDataset = datasets[0];
   let metrics= [];   
@@ -73,7 +72,6 @@
 
   <center><h1>ML Model Builder</h1></center>
   <div class="divider">Data Set</div>
-  <LoadDataset />
   <LoadData />
   <div class="divider">Layer Settings</div>
   <div class = "layer-container card">
