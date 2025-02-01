@@ -1,0 +1,41 @@
+{
+	"name": "ml-model-builder",
+	"version": "0.1.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build",
+		"preview": "vite preview",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
+		"lint": "prettier --check .",
+		"format": "prettier --write ."
+	},
+	"devDependencies": {
+		"@fontsource/fira-mono": "^5.0.0",
+		"@neoconfetti/svelte": "^2.0.0",
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-static": "^3.0.8",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"svelte": "^4.2.7",
+		"svelte-check": "^4.0.0",
+		"typescript": "^5.0.0",
+		"vite": "^5.0.3",
+		"daisyui": "^3.9.4",
+		"postcss": "^8.4.31",
+		"tailwindcss": "^3.3.5",
+		"autoprefixer": "^10.4.16"
+	},
+	"dependencies": {
+		"@tensorflow/tfjs": "^4.15.0",
+		"d3": "^7.8.5",
+		"pnpm": "^9.15.4"
+	},
+	"pnpm.onlyBuiltDependencies":{
+		"core-js": "^3.18.3",
+		"esbuild": "^0.14.0"
+	}
+}
