@@ -13,8 +13,8 @@ export async function getColumns(csvUrl){
   columns.set(columnNames);
 }
 
-let featuresDict = {};
-let labelsDict = {};
+let featuresDictLoc = {};
+let labelsDictLoc = {};
 
 export async function getFeatures(){
   dataset = tf.data.csv(url, {
@@ -27,26 +27,27 @@ export async function getFeatures(){
     
       const unsubscribe = features.subscribe(value => {
         value.forEach(d => {
-          if (!featuresDict[d.c]) {
-            featuresDict[d.c] = [];
+          if (!featuresDictLoc[d.c]) {
+            featuresDictLoc[d.c] = [];
           }
-          featuresDict[d.c].push(element[d.c]);
+          featuresDictLoc[d.c].push(element[d.c]);
         });
       });    
-      // unsubscribe();
+      unsubscribe();
       const unsubscribe2 = labels.subscribe(value => {
         value.forEach(d => {
-          if (!labelsDict[d.c]) {
-            labelsDict[d.c] = [];
+          if (!labelsDictLoc[d.c]) {
+            labelsDictLoc[d.c] = [];
           }
-          labelsDict[d.c].push(element[d.c]);
+          labelsDictLoc[d.c].push(element[d.c]);
         });
       });
-      // unsubscribe();
+
+      unsubscribe2();
 
     });
-
-
+    featuresDict.set(featuresDictLoc);
+    labelsDict.set(labelsDictLoc);
 });
 
 }

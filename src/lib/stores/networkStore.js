@@ -1,6 +1,18 @@
 import { writable } from 'svelte/store';
 
-const initialNetwork = {
+
+export const columns = writable([]);
+export const features = writable([]);
+export const labels = writable([]);
+
+export const featuresDict = writable({});
+export const labelsDict = writable({});
+
+var fn = 2;
+var fn2 = 1;
+var ln =0;
+
+var initialNetwork = {
   layers: [
     { type: 'input', neurons: 2, label: 'Input Layer' },
     { type: 'hidden', neurons: 4, label: 'Hidden Layer 1', activation: 'relu' },
@@ -8,12 +20,17 @@ const initialNetwork = {
   ]
 };
 
+
+
+
 function createNetworkStore() {
+  
   const { subscribe, set, update } = writable(initialNetwork);
 
   return {
     subscribe,
     addLayer: () => update(n => {
+      console.log("fb ",fn);
       const newLayers = [...n.layers];
       newLayers.splice(newLayers.length - 1, 0, {
         type: 'hidden',
@@ -55,9 +72,13 @@ function createNetworkStore() {
 export const network = createNetworkStore();
 export const isTraining = writable(false);
 export const loss = writable(0);
-export const columns = writable([]);
-export const features = writable([]);
-export const labels = writable([]);
 
-export const featuresDict = writable({});
-export const labelsDict = writable({});
+
+const unsubscribe = features.subscribe(value => {
+  if (value.length >2){
+    fn = value.length;
+  }
+  network.updateLayer(0, { neurons: fn });
+  
+  });
+  
