@@ -72,37 +72,3 @@
 </div>
 
 </div>
-<!-- 
-<style>
-  .layer-controls {
-    background-color: #f8f9fa;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
-  
-  /* .control-group {
-    margin: 0.5rem 0;
-  } */
-  
-  label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  select, input {
-    padding: 0.25rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-  }
-  
-  input[type="range"] {
-    flex: 1;
-  }
-  
-  span {
-    min-width: 3em;
-    text-align: right;
-  }
-</style> -->

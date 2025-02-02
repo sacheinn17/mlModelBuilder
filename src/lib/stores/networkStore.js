@@ -55,3 +55,9 @@ function createNetworkStore() {
 export const network = createNetworkStore();
 export const isTraining = writable(false);
 export const loss = writable(0);
+export const columns = writable([]);
+export const features = writable([]);
+export const labels = writable([]);
+
+export const featuresDict = writable({});
+export const labelsDict = writable({});
