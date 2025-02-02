@@ -33,6 +33,7 @@ export const circularDataset = {
   }
 };
 
+
 // Spiral dataset
 export const spiralDataset = {
   name: 'Spiral',
@@ -57,5 +58,13 @@ export const spiralDataset = {
     };
   }
 };
+
+
+
+export const datasetCustom = {
+  name: 'Custom',
+
+
+}
 
 export const datasets = [xorDataset, circularDataset, spiralDataset];

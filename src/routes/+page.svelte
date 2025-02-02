@@ -11,7 +11,7 @@
   // @ts-ignore
   import LayerControls from '$lib/components/LayerControls.svelte';
   // @ts-ignore
-  import { network, isTraining, loss } from '$lib/stores/networkStore';
+  import { network, isTraining, loss,tfdata } from '$lib/stores/networkStore';
   import { trainModel } from '$lib/neural/model';
   import { datasets } from '$lib/data/datasets';
   import LoadData from '$lib/visualization/LoadData.svelte';
@@ -40,26 +40,33 @@
   }
 
   async function handleTrain() {
-    metrics = [];
-    predictions = null;
-    labels = null;
-    
-    const data = selectedDataset.generate();
-    datasetPoints = {
-      xs: await data.xs.array(),
-      ys: await data.ys.array()
-    };
-    
-    // @ts-ignore
-    const results = await trainModel(selectedDataset, (metric) => {
-      metrics = [...metrics, metric];
-      if (metric.predictions) {
-        predictions = metric.predictions;
-      }
-    });
-    
-    predictions = results.predsArray;
-    labels = results.labelsArray;
+    try{
+      metrics = [];
+      predictions = null;
+      labels = null;
+      
+      const data = $tfdata;
+      datasetPoints = {
+        xs: await data.xs.array(),
+        ys: await data.ys.array()
+      };
+      
+      console.log("data ",data);
+
+      // @ts-ignore
+      const results = await trainModel(selectedDataset, (metric) => {
+        metrics = [...metrics, metric];
+        if (metric.predictions) {
+          predictions = metric.predictions;
+        }
+      });
+      
+      predictions = results.predsArray;
+      labels = results.labelsArray;
+    }
+    catch(e){
+      console.log(e);
+    }
   }
 
  // @ts-ignore

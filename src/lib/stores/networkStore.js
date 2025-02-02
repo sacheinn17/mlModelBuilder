@@ -20,9 +20,6 @@ var initialNetwork = {
   ]
 };
 
-
-
-
 function createNetworkStore() {
   
   const { subscribe, set, update } = writable(initialNetwork);
@@ -72,13 +69,16 @@ function createNetworkStore() {
 export const network = createNetworkStore();
 export const isTraining = writable(false);
 export const loss = writable(0);
+export const tfdata = writable({"xs":0,"ys":0,"inputShape":0,"outputShape":0});
 
-
-const unsubscribe = features.subscribe(value => {
-  if (value.length >2){
-    fn = value.length;
+const unsubscribe = featuresDict.subscribe(value => {
+  if (Object.keys(value).length >2){
+    fn = Object.keys(value).length;
   }
+  console.log(fn);
+  
   network.updateLayer(0, { neurons: fn });
   
   });
-  
+
+
