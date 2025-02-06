@@ -1,6 +1,17 @@
 import * as tf from '@tensorflow/tfjs';
 import { network, isTraining, loss } from '../stores/networkStore';
 import { get } from 'svelte/store';
+import {tfdata} from "$lib/stores/networkStore.js";
+
+var data = [];
+
+const unsubscribe = tfdata.subscribe(value => {
+  data = value;
+
+}
+);
+
+
 
 export function createModel() {
   const networkData = get(network);
@@ -25,7 +36,7 @@ export function createModel() {
     loss: 'binaryCrossentropy',
     metrics: ['accuracy']
   });
-
+  console.log(model);
   return model;
 }
 
@@ -34,8 +45,9 @@ export async function trainModel(dataset, onMetricsUpdate) {
   isTraining.set(true);
 
   try {
-    const { xs, ys } = dataset.generate();
-    
+    // const { xs, ys } = dataset.generate();
+    const { xs, ys } = data;
+    console.log("dataset xs ",xs,"ys ",ys);
     await model.fit(xs, ys, {
       epochs: 50,
       batchSize: 32,
@@ -70,7 +82,12 @@ export async function trainModel(dataset, onMetricsUpdate) {
     
     predictions.dispose();
     return { predsArray, labelsArray, xs: await xs.array() };
-  } finally {
+  }
+  
+  catch (e){
+    console.log("Train ",e);
+  }
+  finally {
     isTraining.set(false);
   }
 }

@@ -16,11 +16,11 @@
   import { datasets } from '$lib/data/datasets';
   import LoadData from '$lib/visualization/LoadData.svelte';
 
-  let selectedDataset = datasets[0];
+  let selectedDataset = $tfdata;
   let metrics= [];   
   let predictions= null;
   let labels= null;
-  let datasetPoints = null;
+  let datasetPoints = {xs:[], ys:[]};
 
   function handleRemoveLayer(event) {
     const { index } = event.detail;
@@ -45,13 +45,13 @@
       predictions = null;
       labels = null;
       
-      const data = $tfdata;
-      datasetPoints = {
-        xs: await data.xs.array(),
-        ys: await data.ys.array()
-      };
+      // const data = $tfdata;
+      // datasetPoints = {
+      //   xs: await data.xs.array,
+      //   ys: await data.ys.array
+      // };
       
-      console.log("data ",data);
+      // console.log("data ",data);
 
       // @ts-ignore
       const results = await trainModel(selectedDataset, (metric) => {
@@ -63,9 +63,10 @@
       
       predictions = results.predsArray;
       labels = results.labelsArray;
+      console.log("predictions",predictions);
     }
     catch(e){
-      console.log(e);
+      console.log(e,selectedDataset);
     }
   }
 
@@ -123,7 +124,7 @@
     <div class="card bg-base-300 shadow-inner hover:shadow-lg hover:shadow-orange-400 transition-shadow mx-2 ">
       <div class ="card-body">
       <h2 class = "card-title self-center m-2">Dataset Visualization</h2>
-      <DatasetPlot data={datasetPoints} {predictions} />
+      <DatasetPlot data={$tfdata} {predictions} />
     </div>
     </div>
 

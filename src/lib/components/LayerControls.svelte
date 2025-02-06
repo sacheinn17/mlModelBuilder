@@ -2,7 +2,6 @@
   import { createEventDispatcher } from 'svelte';
   import {fade} from "svelte/transition";
 
-
   export let layer;
   /**
 	 * @type {any}
@@ -37,7 +36,7 @@
         </label>
       </div>
     {/if}
-    
+
     <div class="control-group">
       <label >
         L1 Regularization:

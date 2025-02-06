@@ -6,8 +6,9 @@
     let features = [];
     let fileName = [];
     let url = '';
-    async function handleButtonClick(){
-      await getColumns('https://storage.googleapis.com/tfjs-examples/multivariate-linear-regression/data/boston-housing-train.csv');
+    async function handleButtonClick(e){
+      ;
+      await getColumns(url);
     }
 
 </script>
@@ -25,13 +26,7 @@
     {/if}
 </center>
 
-<!-- 
-{#each $columns as f}
-    <p>{f}</p>
-{/each} -->
-
 <DataSettings />
-
 
 <style>
   .inputDataset{

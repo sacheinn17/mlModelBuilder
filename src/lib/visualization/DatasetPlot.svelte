@@ -6,6 +6,8 @@
   export let predictions = null;
   
   let container;
+
+  console.log(data);
   
   $: if (container && data.xs.length) {
     drawPlot();
@@ -33,21 +35,24 @@
       .domain(d3.extent(data.xs, d => d[1]))
       .range([height, 0]);
 
+    
+
     // Add points
     svg.selectAll("circle")
       .data(data.xs)
       .enter()
       .append("circle")
-      .attr("cx", d => x(d[0]))
-      .attr("cy", d => y(d[1]))
+      .attr("cx", d => d[0])
+      .attr("cy", d => d[1])
       .attr("r", 3)
       .attr("fill", (d, i) => data.ys[i][0] ? "#ff6b6b" : "#4ecdc4")
       .attr("opacity", 0.6);
 
+
     // Add prediction overlay if available
     if (predictions) {
       svg.selectAll(".prediction")
-        .data(data.xs)
+        .data(data.xs[0])
         .enter()
         .append("circle")
         .attr("class", "prediction")

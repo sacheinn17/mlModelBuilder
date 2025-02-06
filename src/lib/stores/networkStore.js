@@ -14,7 +14,7 @@ var ln =0;
 
 var initialNetwork = {
   layers: [
-    { type: 'input', neurons: 2, label: 'Input Layer' },
+    { type: 'input', neurons: 2, label: 'Input Layer', inputShape:2},
     { type: 'hidden', neurons: 4, label: 'Hidden Layer 1', activation: 'relu' },
     { type: 'output', neurons: 1, label: 'Output Layer', activation: 'sigmoid' }
   ]
@@ -56,7 +56,7 @@ function createNetworkStore() {
       return { ...n, layers: newLayers };
     }),
     updateNeurons: (index, delta) => update(n => {
-      if (index === 0 || index === n.layers.length - 1) return n;
+      // if (index === 0 || index === n.layers.length - 1) return n;
       const newLayers = [...n.layers];
       const layer = newLayers[index];
       layer.neurons = Math.max(1, Math.min(20, layer.neurons + delta));
@@ -69,7 +69,7 @@ function createNetworkStore() {
 export const network = createNetworkStore();
 export const isTraining = writable(false);
 export const loss = writable(0);
-export const tfdata = writable({"xs":0,"ys":0,"inputShape":0,"outputShape":0});
+export const tfdata = writable({"xs":[0],"ys":[0],shape:[1,2]});
 
 const unsubscribe = featuresDict.subscribe(value => {
   if (Object.keys(value).length >2){

@@ -1,35 +1,31 @@
 <script>
     import {columns,features,labels} from "$lib/stores/networkStore";
     import {getFeatures} from "$lib/data/load_dataset"
+	import { Reduction } from "@tensorflow/tfjs";
     let featuresLoc = [];
     let labelsLoc = [];
 
-    function clickHandlef (e){
-        featuresLoc.push(e);
-        // console.log("f",featuresLoc,e);
-
-    }
-    function clickHandlel (e){
-        labelsLoc.push(e);
-        // console.log("l",labelsLoc,e);
-
-    }
-
     function loadHandle(){
-
-        featuresLoc = [...new Set(featuresLoc)];
-        labelsLoc = [...new Set(labelsLoc)];
-
         let dup = true;
-            for (let i = 0; i < featuresLoc.length; i++) {
-                for (let j = 0; j < labelsLoc.length; j++) {
-                    console.log(featuresLoc[i],labelsLoc[j]);
-                    if (featuresLoc[i].c === labelsLoc[j].c) {
-                        dup = false;
-                        break;
-                    }
-                }
+
+        var radio = document.querySelectorAll('.checkbox.features');
+        radio.forEach((radio) => {
+
+            if(radio.checked){
+                featuresLoc.push(radio.value);
+                console.log("Features ",radio.value);
             }
+        });
+
+
+        radio = document.querySelectorAll('.checkbox.labels');
+        radio.forEach((radio) => {
+            if(radio.checked){
+                labelsLoc.push(radio.value);
+                console.log("Labels ",radio.value)
+            }
+        });
+
 
         // console.log(dup)
         if (!dup){
@@ -50,8 +46,6 @@
 
 </script>
 
-
-
 <div class="fandl">
     <div class="features card bg-base-200 hover:shadow-lg">
         <div class="card-body ">
@@ -60,7 +54,7 @@
             {#each $columns as c}
             <label class="label cursor-pointer">
                 <span class="label-text text-secondary">{c}</span>
-                <input type="checkbox" class="checkbox" on:click={clickHandlef({c})}/>
+                <input type="checkbox" class="checkbox features" value = "{c}"/>
               </label>
             {/each}
         </div>
@@ -76,14 +70,11 @@
         
     <label class="label cursor-pointer">
         <span class="label-text text-secondary">{c}</span>
-        <input type="checkbox" class="checkbox" on:click={clickHandlel({c})}/>
+        <input type="checkbox" class="checkbox labels" value = "{c}"/>
       </label>
     {/each}
 </div>
 </div>
-
-
-
 
 </div>
 <center>
